@@ -9,7 +9,37 @@ clc
 close all
 clear
 
-Ic = imread('nina 1.jpg');
+figuras = {'caracol '
+    'castillo '
+    'conejo '
+    'corazon '
+    'flor '
+    'gecko '
+    'globo '
+    'hombre '
+    'hueso '
+    'libelula '
+    'luna '
+    'mancha '
+    'mariposa '
+    'nina '
+    'oso '
+    'pastel '};
+
+jpg = '.jpg';
+
+
+k = 1;
+
+%for i = 1:16
+    a = figuras{1};
+    for j = 1:6
+        path = [a  num2str(j) jpg];
+        k = k+1;
+    %end
+%end
+
+Ic = imread(path);
 I = rgb2gray(Ic);
 
 bloques = blockproc(I,[70,70],@mediana);
@@ -25,7 +55,7 @@ bloques = bloques-minimo;
 Ic(:,:,1) = Ic(:,:,1)-bloques;
 Ic(:,:,2) = Ic(:,:,2)-bloques;
 Ic(:,:,3) = Ic(:,:,3)-bloques;
-imshow(Ic);
+figure, imshow(Ic);
 
 [count] = imhist(Ic(:,:,1));
 yR = find(count == max(max(count)));
@@ -42,18 +72,18 @@ supG = yG + 30;
 infB = yB - 30;
 supB = yB + 30;
 
-im = (Ic(:,:,1)>supR  | Ic(:,:,1)<infR) | (Ic(:,:,2)>supG | Ic(:,:,2)<infG) | (Ic(:,:,3)>supB | Ic(:,:,3)<infB);
+imBin = (Ic(:,:,1)>supR  | Ic(:,:,1)<infR) | (Ic(:,:,2)>supG | Ic(:,:,2)<infG) | (Ic(:,:,3)>supB | Ic(:,:,3)<infB);
 
-figure, imshow(im);
-im = imclearborder(im);
-figure, imshow(im);
+figure, imshow(imBin);
+imBin = imclearborder(imBin);
+figure, imshow(imBin);
 
-[L, numObj] = bwlabel(im);
-F = L == 12;
+[L, numObj] = bwlabel(imBin);
+F = L == 1;
 figure, imshow(F);
 
 datos = regionprops(F, 'Area','ConvexArea','Centroid','MajorAxisLength','MinorAxisLength');
-
+    end
 end
 
 
