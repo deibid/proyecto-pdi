@@ -32,8 +32,8 @@ jpg = '.jpg';
 k = 1;
 
 %for i = 1:16
-    a = figuras{1};
-    for j = 1:6
+    a = figuras{10};
+    for j = 1:1
         path = [a  num2str(j) jpg];
         k = k+1;
     %end
@@ -78,11 +78,17 @@ figure, imshow(imBin);
 imBin = imclearborder(imBin);
 figure, imshow(imBin);
 
+imBin = bwareaopen(imBin, 100);
+imBin = imfill(imBin,'holes');
+figure, imshow(imBin);
+
+
 [L, numObj] = bwlabel(imBin);
-F = L == 1;
+F = L == 10;
 figure, imshow(F);
 
 datos = regionprops(F, 'Area','ConvexArea','Centroid','MajorAxisLength','MinorAxisLength');
+datos.Area
     end
 end
 
