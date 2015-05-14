@@ -83,9 +83,7 @@ for j = 1:1
     imBin = (Ic(:,:,1)>supR  | Ic(:,:,1)<infR) | (Ic(:,:,2)>supG | Ic(:,:,2)<infG) | (Ic(:,:,3)>supB | Ic(:,:,3)<infB);
     
     %figure, imshow(imBin);
-    figure, imshow(imBin)
     imBin = imclearborder(imBin);
-    figure, imshow(imBin)
     %figure, imshow(imBin);
     
     imBin = bwareaopen(imBin, 100);
