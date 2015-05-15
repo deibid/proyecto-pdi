@@ -5,6 +5,9 @@ hacer resize del resultado y restarselo a la imagen original
 
 function [] = main()
 
+
+tic
+
 clc
 close all
 clear
@@ -32,7 +35,9 @@ parametros = {'Area'
     'Eccentricity'
     'EquivDiameter'
     'Extent'
-    'Perimeter'};
+    'Perimeter'
+    'ConvexArea'
+    'Solidity'};
 
 jpg = '.jpg';
 
@@ -83,9 +88,7 @@ for j = 1:1
     imBin = (Ic(:,:,1)>supR  | Ic(:,:,1)<infR) | (Ic(:,:,2)>supG | Ic(:,:,2)<infG) | (Ic(:,:,3)>supB | Ic(:,:,3)<infB);
     
     %figure, imshow(imBin);
-    figure, imshow(imBin)
     imBin = imclearborder(imBin);
-    figure, imshow(imBin)
     %figure, imshow(imBin);
     
     imBin = bwareaopen(imBin, 100);
@@ -98,7 +101,7 @@ for j = 1:1
     %EN CASO DE TERMINAR USANDO ESTRUCTURAS..%
     %datosImagen = struct('Area',{0},'MajorAxisLength',{0},'MinorAxisLength',{0},'Eccentricity',{0},'EquivDiameter',{0},'Extent',{0},'Perimeter',{0},'AxisRatio',{0});
     
-    datosImagen = zeros(8,1,3);
+    datosImagen = zeros(14,1,3);
     
     %CAPA 1 - PROMEDIOS
     %CAPA 2 - MINIMOS
@@ -119,9 +122,17 @@ for j = 1:1
         datosImagen(5,1,1) = datosImagen(5,1,1) + datos.EquivDiameter;
         datosImagen(6,1,1) = datosImagen(6,1,1) + datos.Extent;
         datosImagen(7,1,1) = datosImagen(7,1,1) + datos.Perimeter;
-        datosImagen(8,1,1) = datosImagen(8,1,1) + (datos.MinorAxisLength/datos.MajorAxisLength);
-        
-        %sacar convexarea, solidity, area rect = ejemayor*ejemenor
+        datosImagen(8,1,1) = datosImagen(8,1,1) + datos.ConvexArea;
+        datosImagen(9,1,1) = datosImagen(9,1,1) + datos.Solidity;
+        %HASTA AQUI SON PARAMETROS OBTENIDOS DIRECTAMENTE%
+        %ESTOS SON PARAMETROS COMBINADOS%
+        datosImagen(10,1,1) = datosImagen(10,1,1) + (datos.MinorAxisLength/datos.MajorAxisLength);%AxisRatio
+        datosImagen(11,1,1) = datosImagen(11,1,1) + (datos.MajorAxisLength*datos.MinorAxisLength);%AreaRect
+        datosImagen(12,1,1) = datosImagen(12,1,1) + ((datos.Area * 4 * pi)/(datos.Perimeter^2));%FormFact
+        datosImagen(13,1,1) = datosImagen(13,1,1) + (datos.MajorAxisLength/2);%Radio
+        datosImagen(14,1,1) = datosImagen(14,1,1) + (datos.Area/(pi*(datos.MajorAxisLength/2)^2));%AreaCirc
+        %sacar convexarea, solidity, 
+        %area rect = ejemayor*ejemenor
         %form_fact = (4.*pi.*area)./(perimetro.^2);
         %radio = ejemayor/2;
         %area_circ = area./(pi*radio.^2);
@@ -149,16 +160,16 @@ for j = 1:1
         
     end
     
-    fields = fieldnames(datosImagen);
-    for l=1 : 8
-        disp('dividir ')
-        datosImagen.(fields{l})
-        numObj
-        datosImagen.(fields{l}) = datosImagen.(fields{l})/numObj;
-    end
+    
     
     
 end
+
+
+
+
+
+toc
 end
 
 
