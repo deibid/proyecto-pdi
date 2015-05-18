@@ -55,7 +55,6 @@ datosImagen(14,1,j) = datosImagen(14,1,j) + (datos.Area/(pi*(datos.MajorAxisLeng
 
 
 
-whos
 [X1,R1]=imstack2vectors(Clasificador,datosImagen);
 
 [C1,m1]=covmatrix(X1);

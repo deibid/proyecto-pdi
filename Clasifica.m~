@@ -1,5 +1,7 @@
 function [] = Clasifica()
 
+close all
+
 
 
 B1 = load('Figura.mat')
@@ -29,8 +31,7 @@ parametros = {'Area'
 
 datos = regionprops(B1, parametros);
 
-Flag = 1;
-end
+
 j = 1;
 global datosImagen;
 datosImagen = zeros(14,16,1);
@@ -50,6 +51,19 @@ datosImagen(11,1,j) = datosImagen(11,1,j) + (datos.MajorAxisLength*datos.MinorAx
 datosImagen(12,1,j) = datosImagen(12,1,j) + ((datos.Area * 4 * pi)/(datos.Perimeter^2));%FormFact
 datosImagen(13,1,j) = datosImagen(13,1,j) + (datos.MajorAxisLength/2);%Radio
 datosImagen(14,1,j) = datosImagen(14,1,j) + (datos.Area/(pi*(datos.MajorAxisLength/2)^2));%AreaCirc
+
+
+
+
+[X1,R1]=imstack2vectors(Clasificador,datosImagen);
+
+[C1,m1]=covmatrix(X1);
+
+C1
+m1
+dY1=bayesgauss(X1,C1,m1)
+
+IY1=find(dY1~=1)
 
 
 
