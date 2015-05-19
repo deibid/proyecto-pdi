@@ -5,24 +5,12 @@ function [ Resultado ] = seleccionaPropiedades( Matriz,renglones )
 
 
 
-renglones
-
-
-disp('Selecciona props');
-
-
+renglones;
 Resultado  = [];
-
-
-
-size(renglones,2)
+size(renglones,2);
 
 for i=1:size(renglones,2)
-    
-   
-   Resultado = cat(1,Resultado,Matriz(renglones(i),:))
-   
-    
+   Resultado = cat(1,Resultado,Matriz(renglones(i),:));
 end
 
 

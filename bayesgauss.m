@@ -54,7 +54,7 @@ for J = 1:W
       D(1:K, J) = -inf;
    else
       D(:, J) = L - DET - 0.5*mahalanobis(X, C, M);
-      J
+      J;
    end
 end
 

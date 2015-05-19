@@ -19,4 +19,4 @@ X = X - m(ones(K, 1), :);
 % because the vectors are rows of X.
 C = (X'*X)/(K - 1);
 m = m'; % Convert to a column vector.
-'Hola'
+%'Hola'
