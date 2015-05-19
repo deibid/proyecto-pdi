@@ -32,7 +32,7 @@ for i=1:size(figuras,1)
     Clase = load(path);
     Clase = Clase.datosFinales
     
-    Clase = seleccionaPropiedades(Clase,[4,5,7,10])
+    Clase = seleccionaPropiedades(Clase,[2,3,4,5,7,10,14])
     
     [covarianza,media] = covmatrix(Clase');
     

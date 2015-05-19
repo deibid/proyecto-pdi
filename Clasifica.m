@@ -3,14 +3,39 @@ function [] = Clasifica()
 close all
 
 
+nombre = 'corazons';
 
-B1 = load('caracols.mat')
+archivo = [nombre,'.mat']
+B1 = load(archivo)
 B1 = B1.datosFinales;
 whos
 %imshow(B1,[])
 
 
 
+
+figuras = {'caracols'
+    'castillos'
+    'conejos'
+    'corazons'
+    'geckos'
+    'globos'
+    'huesos'
+    'libelulas'
+    'lunas'
+    'manchas'
+    'mariposas'
+    'ninas'
+    'ninos'
+    'osos'
+    'pastels'
+    'tulipans'};
+
+%index = find([figuras{1,:}] == nombre);
+
+
+%index = strfind(figuras,nombre)
+index = find(ismember(figuras,nombre))
 %Clasificador = load('Clasificador.mat')
 %Clasificador = Clasificador.Clasificador;
 
@@ -88,14 +113,27 @@ Media
 %dY1
 
 
+res = 0;
 
 for l=1:size(B1,2)
     
-    datos = seleccionaPropiedades(B1,[4,5,7,10]);
+    datos = seleccionaPropiedades(B1,[2,3,4,5,7,10,14]);
     datos;
-    dY1 = bayesgauss(datos(:,l)',Covarianza,Media)
+    dY1 = bayesgauss(datos(:,l)',Covarianza,Media);
+    
+    if not(isempty(find(dY1~=index)))
+       res = res+1; 
+    end
     
 end
+
+
+res
+size(B1,2)
+
+
+
+
 
 
 
