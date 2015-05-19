@@ -46,7 +46,7 @@ global datosImagen;
 global datosFinales;
 
 global clasificador;
-clasificador = zeros(14,16);
+clasificador = zeros(15,16);
 
 
 
@@ -55,9 +55,9 @@ saveFlag = 0;
 
 [tipos,trash] = size(figuras);
 
-for k = 16:tipos
+for k = 1:tipos
     
-    datosImagen = zeros(14,1);
+    datosImagen = zeros(15,1);
     %14 caracteristicas, 1 tipo de figura, 6 imagenes
     datosFinales = [];
 
@@ -67,7 +67,7 @@ for k = 16:tipos
     for j = 1:6
         
         path = [a  num2str(j) jpg];
-        k = k+1;
+        %k = k+1;
         
         
         Ic = imread(path);
@@ -142,7 +142,7 @@ for k = 16:tipos
             datos = regionprops(L == l, parametros);
             
             
-            if saveFlag == 0
+            if saveFlag == 0 && k ==8
                disp('guardar')
                 Figura = L==1;
                 save('Figura','Figura');
@@ -165,17 +165,17 @@ for k = 16:tipos
             datosImagen(12,l) = ((datos.Area * 4 * pi)/(datos.Perimeter^2));%FormFact
             datosImagen(13,l) = (datos.MajorAxisLength/2);%Radio
             datosImagen(14,l) = (datos.Area/(pi*(datos.MajorAxisLength/2)^2));%AreaCirc
-            
+            datosImagen(15,l) = datos.Area/datos.ConvexArea;
             
             %rojo, naranja, yema, amarillo, limon, verde, azul, agua, turqueza, rosa,
             %morado, rosafosfo, cafe, gris, blanco, negro
-            datosImagen
+            datosImagen;
             
             datos = [];
         end
         
         datosFinales = cat(2, datosFinales, datosImagen);
-        datosFinales
+        datosFinales;
         %datosImagen(:,:,j) = datosImagen(:,:,j)./numObj;
         
     end

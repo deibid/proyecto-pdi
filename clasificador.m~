@@ -22,17 +22,30 @@ figuras = {'caracols'
     'tulipans'};
 
 
-
+Clasificador = [];
+CA = [];
+MA = [];
 for i=1:size(figuras,1)
     
-   path = [figuras{i} '.mat']
-   
-   
-   
-   
+    path = [figuras{i} '.mat']
+    
+    Clase = load(path);
+    Clase = Clase.datosFinales
     
     
+    [covarianza,media] = covmatrix(Clase');
+    
+    CA = cat(3,CA,covarianza)
+    MA = cat(2,MA,media)
+    
+    
+        
 end
+
+
+
+save('Covarianza','CA');
+save('Media','MA');
 
 
 
