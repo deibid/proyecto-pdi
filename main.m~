@@ -64,7 +64,7 @@ for k = 1:tipos
     
     %iteracion sobre las fotos del mismo tipo
     a = figuras{k};
-    for j = 1:5
+    for j = 1:6
         
         path = [a  num2str(j) jpg];
         %k = k+1;

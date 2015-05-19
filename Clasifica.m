@@ -1,14 +1,17 @@
-function [] = Clasifica()
+function [] = Clasifica(Imagen)
 
 close all
 
 
-nombre = 'corazons';
+nombre = 'tulipans';
 
 archivo = [nombre,'.mat']
 B1 = load(archivo)
 B1 = B1.datosFinales;
 whos
+
+
+B1 = Imagen;
 %imshow(B1,[])
 
 
@@ -115,17 +118,34 @@ Media
 
 res = 0;
 
+
+Resultado = [];
+
 for l=1:size(B1,2)
     
-    datos = seleccionaPropiedades(B1,[2,3,4,5,7,10,14]);
+    datos = seleccionaPropiedades(B1,[2,3,4,5,6,7,9,10,12,16]);
     datos;
     dY1 = bayesgauss(datos(:,l)',Covarianza,Media);
+
     
+    Resultado = cat(1,Resultado,dY1);
     if not(isempty(find(dY1~=index)))
        res = res+1; 
     end
     
 end
+
+
+Cuenta = zeros(16,1)
+for i = 1:size(Resultado,1)
+   
+    Cuenta(Resultado(i,1)) = Cuenta(Resultado(i,1))+1;
+    
+end
+
+
+Cuenta
+
 
 
 res

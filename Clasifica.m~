@@ -3,7 +3,7 @@ function [] = Clasifica()
 close all
 
 
-nombre = 'manchas';
+nombre = 'globos';
 
 archivo = [nombre,'.mat']
 B1 = load(archivo)
@@ -117,7 +117,7 @@ res = 0;
 
 for l=1:size(B1,2)
     
-    datos = seleccionaPropiedades(B1,[2,3,4,5,7,10,14]);
+    datos = seleccionaPropiedades(B1,[2,3,4,5,6,7]);
     datos;
     dY1 = bayesgauss(datos(:,l)',Covarianza,Media);
     
