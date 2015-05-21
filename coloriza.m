@@ -26,6 +26,7 @@ Resultado = [];
 whos
 pause
 for i=1 : 12
+end
     
     
     
