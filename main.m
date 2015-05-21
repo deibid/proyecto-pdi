@@ -168,7 +168,7 @@ for k = 1:tipos
             datosImagen(15,l) = datos.Area/datos.ConvexArea; % 15
             datosImagen(16,l) = datos.Area/datosImagen(11,l); %16 %%
             
-            %rojo, naranja, yema, amarillo, limon, verde, azul, agua, turqueza, rosa,
+            %rojo, naranja, yema, amarillo, limon, verde, azul, aqua, turqueza, rosa,
             %morado, rosafosfo, cafe, gris, blanco, negro
             datosImagen;
             

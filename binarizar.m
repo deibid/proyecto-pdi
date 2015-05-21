@@ -1,4 +1,4 @@
-function [Propiedades] = binarizar( foto )
+function [Propiedades, imBin] = binarizar( foto )
 
 parametros = {'Area'
     'MajorAxisLength'
@@ -49,15 +49,15 @@ I = rgb2gray(Ic);
         infB = yB - 30;
         supB = yB + 30;
         
-        imshow(Ic,[])
-        whos
+        %figure, imshow(Ic,[])
+        %whos
         imBin = (Ic(:,:,1)>supR  | Ic(:,:,1)<infR) | (Ic(:,:,2)>supG | Ic(:,:,2)<infG) | (Ic(:,:,3)>supB | Ic(:,:,3)<infB);
         
         imBin = imclearborder(imBin);
         
         imBin = bwareaopen(imBin, 100);
         imBin = imfill(imBin,'holes');
-        imshow(imBin)
+        %imshow(imBin)
         [L, numObj] = bwlabel(imBin);
         
         Propiedades = [];
@@ -95,7 +95,7 @@ I = rgb2gray(Ic);
             Propiedades = cat(2,Propiedades,datosImagen);
            
         end
-        Propiedades;
+        %figure, imshow(imBin);
 
 end
 

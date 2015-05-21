@@ -17,6 +17,7 @@ B2=roipoly(x1);
 B3=roipoly(x4);
 
 stack=cat(3,x1,x2,x3,x4);
+whos
 [X1,R1]=imstack2vectors(stack,B1);
 [X2,R2]=imstack2vectors(stack,B2);
 [X3,R3]=imstack2vectors(stack,B3);
