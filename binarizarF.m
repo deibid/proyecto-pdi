@@ -4,6 +4,7 @@ Ic = Imagen;
 I = rgb2gray(Imagen);
 
 
+
 bloques = blockproc(I,[80,80],@mediana);
 bloques = imresize(bloques,[427,640]);
 
@@ -31,14 +32,20 @@ yB = yB(1);
 
 
 
-infR = yR - 30;
-supR = yR + 30;
-infG = yG - 30;
-supG = yG + 30;
-infB = yB - 30;
-supB = yB + 30;
+infR = yR - 30
+supR = yR + 30
+infG = yG - 30
+supG = yG + 30
+infB = yB - 30
+supB = yB + 30
 
-imBin = (Ic(:,:,1)>supR  | Ic(:,:,1)<infR) | (Ic(:,:,2)>supG | Ic(:,:,2)<infG) | (Ic(:,:,3)>supB | Ic(:,:,3)<infB);
+imBinR = Ic(:,:,1)>supG  | Ic(:,:,1)<infG;
+imBinG = Ic(:,:,2)>supG | Ic(:,:,2)<infG;
+imBinB = Ic(:,:,3)>supB | Ic(:,:,3)<infB;
+
+
+imBin = (Ic(:,:,1)>supG  | Ic(:,:,1)<infG) | (Ic(:,:,2)>supG | Ic(:,:,2)<infG) | (Ic(:,:,3)>supB | Ic(:,:,3)<infB);
+%imBin =  (Ic(:,:,2)>supG | Ic(:,:,2)<infG) | (Ic(:,:,2)>supG | Ic(:,:,2)<infG) | (Ic(:,:,3)>supB | Ic(:,:,3)<infB);
 
 imBin = imclearborder(imBin);
 

@@ -4,22 +4,18 @@ function [ dY1 ] = clasificarColor( propiedadesColores )
 
 
 
+Matrices = load('Matrices_PD.mat');
+%Covarianza = load('CovarianzaColores.mat');
+CA = Matrices.matrices.CC;
+MA = Matrices.matrices.MC;
 
-Covarianza = load('CovarianzaColores.mat');
-CA = Covarianza.CA;
+%Media = load('MediaColores.mat');
 
-
-Media = load('MediaColores.mat');
-MA = Media.MA;
 
 
 
 
 dY1 = bayesgauss(propiedadesColores,CA,MA);
-
-
-
-
 dY1 = mode(dY1);
 
 end

@@ -3,12 +3,15 @@ function [ dY1 ] = clasificarFigura( propiedadesFiguras )
 %   Detailed explanation goes here
 
 
-Covarianza = load('Covarianza.mat');
-Covarianza = Covarianza.CA;
+Matrices = load('Matrices_PD.mat');
+Covarianza = Matrices.matrices.CF;
 
-Media = load('Media.mat');
-Media = Media.MA;
+%Covarianza = load('Covarianza.mat');
+%Covarianza = Covarianza.CA;
 
+%Media = load('Media.mat');
+%Media = Media.MA;
+Media = Matrices.matrices.MF;
 dY1 = bayesgauss(propiedadesFiguras',Covarianza,Media);
 
 
