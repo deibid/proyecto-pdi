@@ -46,7 +46,7 @@ global datosImagen;
 global datosFinales;
 
 global clasificador;
-clasificador = zeros(15,16);
+clasificador = zeros(10,16);
 
 
 
@@ -57,7 +57,7 @@ saveFlag = 0;
 
 for k = 1:tipos
     
-    datosImagen = zeros(15,1);
+    datosImagen = zeros(10,1);
     %14 caracteristicas, 1 tipo de figura, 6 imagenes
     datosFinales = [];
 
@@ -149,24 +149,24 @@ for k = 1:tipos
                 saveFlag = 1;
             end
             
-            datosImagen(1,l) = datos.Area;%1
-            datosImagen(2,l) = datos.MajorAxisLength;%2 %%
-            datosImagen(3,l) = datos.MinorAxisLength;%3 %%
-            datosImagen(4,l) = datos.Eccentricity;%4 %%
-            datosImagen(5,l) = datos.EquivDiameter;%5 %%
-            datosImagen(6,l) = datos.Extent;%6 %%
-            datosImagen(7,l) = datos.Perimeter;%7 %%
-            datosImagen(8,l) = datos.ConvexArea;%8 
-            datosImagen(9,l) = datos.Solidity;%9 %%
+            %datosImagen(1,l) = datos.Area;%1
+            datosImagen(1,l) = datos.MajorAxisLength;%2 %%
+            datosImagen(2,l) = datos.MinorAxisLength;%3 %%
+            datosImagen(3,l) = datos.Eccentricity;%4 %%
+            datosImagen(4,l) = datos.EquivDiameter;%5 %%
+            datosImagen(5,l) = datos.Extent;%6 %%
+            datosImagen(6,l) = datos.Perimeter;%7 %%
+            %datosImagen(8,l) = datos.ConvexArea;%8 
+            datosImagen(7,l) = datos.Solidity;%9 %%
             %HASTA AQUI SON PARAMETROS OBTENIDOS DIRECTAMENTE%
             %ESTOS SON PARAMETROS COMBINADOS%
-            datosImagen(10,l) = (datos.MajorAxisLength/datos.MinorAxisLength);%AxisRatio - 10 %% major/menor
-            datosImagen(11,l) = (datos.MajorAxisLength*datos.MinorAxisLength);%AreaRect - 11
-            datosImagen(12,l) = ((datos.Area * 4 * pi)/(datos.Perimeter^2));%FormFact - 12 %%
-            datosImagen(13,l) = (datos.MajorAxisLength/2);%Radio - 13
-            datosImagen(14,l) = (datos.Area/(pi*(datos.MajorAxisLength/2)^2));%AreaCirc - 14 
-            datosImagen(15,l) = datos.Area/datos.ConvexArea; % 15
-            datosImagen(16,l) = datos.Area/datosImagen(11,l); %16 %%
+            datosImagen(8,l) = (datos.MajorAxisLength/datos.MinorAxisLength);%AxisRatio - 10 %% major/menor
+            %datosImagen(11,l) = (datos.MajorAxisLength*datos.MinorAxisLength);%AreaRect - 11
+            datosImagen(9,l) = ((datos.Area * 4 * pi)/(datos.Perimeter^2));%FormFact - 12 %%
+%             datosImagen(13,l) = (datos.MajorAxisLength/2);%Radio - 13
+%             datosImagen(14,l) = (datos.Area/(pi*(datos.MajorAxisLength/2)^2));%AreaCirc - 14 
+%             datosImagen(15,l) = datos.Area/datos.ConvexArea; % 15
+            datosImagen(10,l) = datos.Area/(datos.MajorAxisLength*datos.MinorAxisLength); %16 %%
             
             %rojo, naranja, yema, amarillo, limon, verde, azul, aqua, turqueza, rosa,
             %morado, rosafosfo, cafe, gris, blanco, negro

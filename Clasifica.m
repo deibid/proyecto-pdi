@@ -2,7 +2,7 @@ function [] = Clasifica(Imagen)
 
 close all
 
-
+Imagen
 nombre = 'tulipans';
 
 archivo = [nombre,'.mat']
@@ -123,8 +123,8 @@ Resultado = [];
 
 for l=1:size(B1,2)
     
-    datos = seleccionaPropiedades(B1,[2,3,4,5,6,7,9,10,12,16]);
-    datos;
+    %datos = seleccionaPropiedades(B1,[2,3,4,5,6,7,9,10,12,16]);
+    datos=B1;
     dY1 = bayesgauss(datos(:,l)',Covarianza,Media);
 
     

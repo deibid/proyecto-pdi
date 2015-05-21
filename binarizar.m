@@ -60,30 +60,48 @@ I = rgb2gray(Ic);
         %imshow(imBin)
         [L, numObj] = bwlabel(imBin);
         
+        
         Propiedades = [];
-        datosImagen = zeros(16,1);
+        datosImagen = zeros(10,1);
         for  l=1: numObj
         
             datos = regionprops(L == l, parametros);
-            
-            datosImagen(1,1) = datos.Area;%1
-            datosImagen(2,1) = datos.MajorAxisLength;%2 %%
-            datosImagen(3,1) = datos.MinorAxisLength;%3 %%
-            datosImagen(4,1) = datos.Eccentricity;%4 %%
-            datosImagen(5,1) = datos.EquivDiameter;%5 %%
-            datosImagen(6,1) = datos.Extent;%6 %%
-            datosImagen(7,1) = datos.Perimeter;%7 %%
-            datosImagen(8,1) = datos.ConvexArea;%8 
-            datosImagen(9,1) = datos.Solidity;%9 %%
+            %datosImagen(1,l) = datos.Area;%1
+            datosImagen(1,1) = datos.MajorAxisLength;%2 %%
+            datosImagen(2,1) = datos.MinorAxisLength;%3 %%
+            datosImagen(3,1) = datos.Eccentricity;%4 %%
+            datosImagen(4,1) = datos.EquivDiameter;%5 %%
+            datosImagen(5,1) = datos.Extent;%6 %%
+            datosImagen(6,1) = datos.Perimeter;%7 %%
+            %datosImagen(8,l) = datos.ConvexArea;%8 
+            datosImagen(7,1) = datos.Solidity;%9 %%
             %HASTA AQUI SON PARAMETROS OBTENIDOS DIRECTAMENTE%
             %ESTOS SON PARAMETROS COMBINADOS%
-            datosImagen(10,1) = (datos.MajorAxisLength/datos.MinorAxisLength);%AxisRatio - 10 %% major/menor
-            datosImagen(11,1) = (datos.MajorAxisLength*datos.MinorAxisLength);%AreaRect - 11
-            datosImagen(12,1) = ((datos.Area * 4 * pi)/(datos.Perimeter^2));%FormFact - 12 %%
-            datosImagen(13,1) = (datos.MajorAxisLength/2);%Radio - 13
-            datosImagen(14,1) = (datos.Area/(pi*(datos.MajorAxisLength/2)^2));%AreaCirc - 14 
-            datosImagen(15,1) = datos.Area/datos.ConvexArea; % 15
-            datosImagen(16,1) = datos.Area/datosImagen(11,1); %16 %%
+            datosImagen(8,1) = (datos.MajorAxisLength/datos.MinorAxisLength);%AxisRatio - 10 %% major/menor
+            %datosImagen(11,l) = (datos.MajorAxisLength*datos.MinorAxisLength);%AreaRect - 11
+            datosImagen(9,1) = ((datos.Area * 4 * pi)/(datos.Perimeter^2));%FormFact - 12 %%
+%             datosImagen(13,l) = (datos.MajorAxisLength/2);%Radio - 13
+%             datosImagen(14,l) = (datos.Area/(pi*(datos.MajorAxisLength/2)^2));%AreaCirc - 14 
+%             datosImagen(15,l) = datos.Area/datos.ConvexArea; % 15
+            datosImagen(10,1) = datos.Area/(datos.MajorAxisLength*datos.MinorAxisLength); %16 %%
+%             datosImagen(1,1) = datos.Area;%1
+%             datosImagen(2,1) = datos.MajorAxisLength;%2 %%
+%             datosImagen(3,1) = datos.MinorAxisLength;%3 %%
+%             datosImagen(4,1) = datos.Eccentricity;%4 %%
+%             datosImagen(5,1) = datos.EquivDiameter;%5 %%
+%             datosImagen(6,1) = datos.Extent;%6 %%
+%             datosImagen(7,1) = datos.Perimeter;%7 %%
+%             datosImagen(8,1) = datos.ConvexArea;%8 
+%             datosImagen(9,1) = datos.Solidity;%9 %%
+%             %HASTA AQUI SON PARAMETROS OBTENIDOS DIRECTAMENTE%
+%             %ESTOS SON PARAMETROS COMBINADOS%
+%             datosImagen(10,1) = (datos.MajorAxisLength/datos.MinorAxisLength);%AxisRatio - 10 %% major/menor
+%             datosImagen(11,1) = (datos.MajorAxisLength*datos.MinorAxisLength);%AreaRect - 11
+%             datosImagen(12,1) = ((datos.Area * 4 * pi)/(datos.Perimeter^2));%FormFact - 12 %%
+%             datosImagen(13,1) = (datos.MajorAxisLength/2);%Radio - 13
+%             datosImagen(14,1) = (datos.Area/(pi*(datos.MajorAxisLength/2)^2));%AreaCirc - 14 
+%             datosImagen(15,1) = datos.Area/datos.ConvexArea; % 15
+%             datosImagen(16,1) = datos.Area/datosImagen(11,1); %16 %%
             
             %rojo, naranja, yema, amarillo, limon, verde, azul, agua, turqueza, rosa,
             %morado, rosafosfo, cafe, gris, blanco, negro
